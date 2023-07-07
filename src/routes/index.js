@@ -3,6 +3,7 @@ import Detail from "../pages/details/Detail";
 import SearchResult from "../pages/searchResult/SearchResult";
 import Explore from "../pages/explore/Explore";
 import PageNotFound from "../pages/404/pageNotFound";
+import { DefaultLayout } from "~/layouts";
 
 // ** public routes
 const publicRoutes = [

@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { publicRoutes } from "~/routes";
 
 import { fetchDataFromApi } from "./utils/api";
 import { getApiConfiguration } from "./store/homeSlice";
+import { publicRoutes } from "~/routes";
+import { DefaultLayout } from "./layouts";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,9 +32,20 @@ function App() {
   return (
     <>
       <Routes>
-        {publicRoutes.map(({ path, component }) => {
+        {publicRoutes.map(({ path, component, layout }) => {
           const Page = component;
-          return <Route path={path} element={<Page />} key={uuidv4()} />;
+          const Layout = layout || DefaultLayout;
+          return (
+            <Route
+              path={path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              }
+              key={uuidv4()}
+            />
+          );
         })}
       </Routes>
     </>
