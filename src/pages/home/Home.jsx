@@ -1,4 +1,4 @@
-import styles from "./Home.module.scss";
+import React from "react";
 import HeroBanner from "./heroBanner/HeroBanner";
 import Trending from "./trending/Trending";
 
@@ -11,4 +11,5 @@ function Home() {
   );
 }
 
+// export default React.memo(Home);
 export default Home;

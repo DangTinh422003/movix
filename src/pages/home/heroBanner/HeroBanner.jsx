@@ -51,7 +51,7 @@ function HeroBanner() {
               value={query}
               onKeyUp={searchQueryHandler}
             />
-            <button>Search</button>
+            <button onClick={searchQueryHandler}>Search</button>
           </div>
         </div>
       </ContentWrapper>

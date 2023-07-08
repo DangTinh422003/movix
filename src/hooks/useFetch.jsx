@@ -3,13 +3,13 @@ import { fetchDataFromApi } from "../utils/api";
 
 function useFetch(url) {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoading("loading...");
     setData(null);
-    setError(false);
+    setError(null);
 
     fetchDataFromApi(url)
       .then((res) => {
