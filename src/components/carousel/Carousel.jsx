@@ -10,7 +10,7 @@ import {
 
 import styles from "./Carousel.module.scss";
 import ContentWrapper from "~/components/contentWrapper/ContentWrapper";
-import Img from "~/components/lazyLoadImage/Img.jsx";
+import Img from "~/components/lazyLoadImage/img";
 import PosterFallback from "~/assets/no-poster.png";
 import CircleRating from "~/components/circleRating/CircleRating";
 import Genres from "../genres/Genres";
