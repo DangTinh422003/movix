@@ -21,6 +21,7 @@ function HeroBanner() {
   }, [data]);
 
   const searchQueryHandler = (e) => {
+    console.log(e);
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
     }
@@ -51,7 +52,15 @@ function HeroBanner() {
               value={query}
               onKeyUp={searchQueryHandler}
             />
-            <button onClick={searchQueryHandler}>Search</button>
+            <button
+              onClick={(e) => {
+                if (query.length > 0) {
+                  navigate(`/search/${query}`);
+                }
+              }}
+            >
+              Search
+            </button>
           </div>
         </div>
       </ContentWrapper>

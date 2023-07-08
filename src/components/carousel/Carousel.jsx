@@ -21,17 +21,12 @@ function Carousel({ data, loading }) {
   const navigate = useNavigate();
 
   const navigation = (dir) => {
-    console.log(dir);
     const container = carouselContainer.current;
     const scrollAmount =
       dir === "left"
         ? container.scrollLeft - (container.offsetWidth + 20)
         : container.scrollLeft + (container.offsetWidth + 20);
-
-    container.scrollTo({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
+    container.scrollTo({ left: scrollAmount, behavior: "smooth" });
   };
 
   const skItem = () => {
@@ -47,26 +42,28 @@ function Carousel({ data, loading }) {
   };
 
   return (
-    <div
-      className={styles.carousel}
-      ref={carouselContainer}
-      onClick={(e) => e.target}
-    >
+    <div className={styles.carousel}>
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
           className={clsx(styles.arrow, styles.carouselLeftNav)}
+          onClick={(e) => navigation("left")}
         />
         <BsFillArrowRightCircleFill
           className={clsx(styles.arrow, styles.carouselRighttNav)}
+          onClick={(e) => navigation("right")}
         />
         {!loading ? (
-          <div className={styles.carouselItems}>
+          <div className={styles.carouselItems} ref={carouselContainer}>
             {data?.map((item) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
                 : PosterFallback;
               return (
-                <div key={item.id} className={styles.carouselItem}>
+                <div
+                  key={item.id}
+                  className={styles.carouselItem}
+                  onClick={() => navigate(`/${item.media_type}/${item.id}`)}
+                >
                   <div className={styles.posterBlock}>
                     <Img
                       src={posterUrl}
@@ -79,7 +76,10 @@ function Carousel({ data, loading }) {
                     <span className={styles.title}>
                       {item.title || item.name}
                     </span>
-                    <div className={styles.date}>
+                    <div
+                      className={styles.date}
+                      onClick={(e) => console.log(e.target)}
+                    >
                       {dayjs(item.release_Date).format("MMM D, YYYY")}
                     </div>
                   </div>
