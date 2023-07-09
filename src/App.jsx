@@ -7,6 +7,7 @@ import { fetchDataFromApi } from "./utils/api";
 import { getApiConfiguration, getGenres } from "./store/homeSlice";
 import { publicRoutes } from "~/routes";
 import { DefaultLayout } from "./layouts";
+import ScrolltoTop from "./hooks/ScrolltoTop";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,9 @@ function App() {
               path={path}
               element={
                 <Layout>
-                  <Page />
+                  <ScrolltoTop>
+                    <Page />
+                  </ScrolltoTop>
                 </Layout>
               }
               key={uuidv4()}

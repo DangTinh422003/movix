@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import styles from "./Detail.module.scss";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
+import Cast from "./cast/Cast";
+import VideosSection from "./videosSection/VideosSection";
+import { Similar, Recommendation } from "./carousels";
 import useFetch from "../../hooks/useFetch";
 
 function Detail() {
@@ -13,6 +16,10 @@ function Detail() {
   return (
     <div className={styles.detail}>
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
+      <Cast data={credits?.cast} loading={creditsLoading} />
+      <VideosSection data={data} loading={loading} />
+      <Similar mediaType={mediaType} id={id} />
+      <Recommendation mediaType={mediaType} id={id} />
     </div>
   );
 }
