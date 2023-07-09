@@ -1,17 +1,21 @@
+import clsx from "clsx";
+import dayjs from "dayjs";
+import { BsPlay } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import dayjs from "dayjs";
+import { useState } from "react";
 
+import CircleRating from "~/components/circleRating/CircleRating";
+import ContentWrapper from "~/components/contentWrapper/ContentWrapper";
+import Img from "~/components/lazyLoadImage/img";
+import PosterFallback from "~/assets/no-poster.png";
+import VideoPopup from "~/components/videoPopup/VideoPopup";
 import styles from "./DetailsBanner.module.scss";
-import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
-import useFetch from "../../../hooks/useFetch";
-import { BsPlay } from "react-icons/bs";
-import CircleRating from "../../../components/circleRating/CircleRating";
-import Img from "../../../components/lazyLoadImage/img";
-import PosterFallback from "../../../assets/no-poster.png";
-import clsx from "clsx";
+import useFetch from "~/hooks/useFetch";
 
 function DetailsBanner({ video, crew }) {
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
@@ -64,7 +68,13 @@ function DetailsBanner({ video, crew }) {
                         className={styles.circleRating}
                       />
 
-                      <div className={styles.playbtn} onClick={() => {}}>
+                      <div
+                        className={styles.playbtn}
+                        onClick={() => {
+                          setShow(true);
+                          setVideoId(video?.key);
+                        }}
+                      >
                         <BsPlay />
                         <span className={styles.text}>Watch Trailer</span>
                       </div>
@@ -139,6 +149,14 @@ function DetailsBanner({ video, crew }) {
                     )}
                   </div>
                 </div>
+
+                {/* popup video */}
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
               </ContentWrapper>
             </>
           )}

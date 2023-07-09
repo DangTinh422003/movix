@@ -78,10 +78,7 @@ function Carousel({ data, loading, endpoint }) {
                     <span className={styles.title}>
                       {item.title || item.name}
                     </span>
-                    <div
-                      className={styles.date}
-                      onClick={(e) => console.log(e.target)}
-                    >
+                    <div className={styles.date}>
                       {dayjs(item.release_Date).format("MMM D, YYYY")}
                     </div>
                   </div>
