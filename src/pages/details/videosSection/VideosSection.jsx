@@ -4,7 +4,7 @@ import { CiPlay1 } from "react-icons/ci";
 import styles from "./VideosSection.module.scss";
 import ContentWrapper from "~/components/contentWrapper/ContentWrapper";
 import VideoPopup from "~/components/videoPopup/VideoPopup";
-import Img from "~/components/lazyLoadImage/Img";
+import Img from "~/components/lazyLoadImage/img";
 
 const VideosSection = ({ data, loading }) => {
   const [show, setShow] = useState(false);
