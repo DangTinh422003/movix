@@ -1,9 +1,19 @@
+@mixin md {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
 .carouselSection {
   .carouselTitle {
     position: relative;
-    font-size: 24px;
+    font-size: 18px;
     color: #fff;
     font-weight: 400;
     margin-bottom: 20px;
+    margin-right: 10px;
+    @include md {
+      font-size: 24px;
+    }
   }
 }

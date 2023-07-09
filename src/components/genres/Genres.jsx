@@ -1,7 +1,9 @@
+import React from "react";
 import { useSelector } from "react-redux";
+
 import styles from "./Genres.module.scss";
 
-function Genres({ data }) {
+const Genres = ({ data }) => {
   const { genres } = useSelector((state) => state.home);
 
   return (
@@ -9,13 +11,13 @@ function Genres({ data }) {
       {data?.map((g) => {
         if (!genres[g]?.name) return;
         return (
-          <div key={g} lassName={styles.genre}>
+          <div key={g} className={styles.genre}>
             {genres[g]?.name}
           </div>
         );
       })}
     </div>
   );
-}
+};
 
 export default Genres;
